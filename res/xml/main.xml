@@ -91,6 +91,12 @@
             android:title="@string/dnd_title"
             android:summary="@string/dnd_summary" />
 
+        <SwitchPreference
+            android:key="dt2w"
+            android:icon="@drawable/ic_dt2w"
+            android:summary="@string/dt2w_summary"
+            android:title="@string/dt2w_title" />
+
         <Preference
             android:key="doze"
             android:title="@string/ambient_display_gestures_title"
