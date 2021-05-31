@@ -49,6 +49,20 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="perf"
+        android:title="@string/perf_title">
+
+        <com.realmeparts.SecureSettingListPreference
+            android:icon="@drawable/ic_perf_profile"
+            android:key="perf_profile"
+            android:dialogTitle="@string/perf_profile_title"
+            android:entries="@array/perf_profiles"
+            android:entryValues="@array/perf_profile_values"
+            android:defaultValue="0"
+            android:title="@string/perf_profile_title" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:key="graphics"
         android:title="@string/display_title">
 
@@ -78,18 +92,6 @@
             android:key="srgb"
             android:summary="@string/srgb_mode_summary"
             android:title="@string/srgb_mode_title" />
-
-        <SwitchPreference
-            android:icon="@drawable/game_mode_icon"
-            android:key="game"
-            android:summary="@string/game_mode_summary"
-            android:title="@string/game_mode_title" />
-
-        <SwitchPreference
-            android:key="dnd"
-            android:icon="@drawable/ic_info_outline_24dp"
-            android:title="@string/dnd_title"
-            android:summary="@string/dnd_summary" />
 
         <SwitchPreference
             android:key="dt2w"

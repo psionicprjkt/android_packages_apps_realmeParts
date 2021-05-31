@@ -19,6 +19,7 @@
     <!-- CABC -->
     <string name="cabc_title">CABC Mode</string>
     <string name="cabc_dialogTitle">CABC Profiles</string>
+    <string name="cabc_summary">This feature will lower some display effects to increase your phone\'s endurance</string>
     <string name="cabc_off">Off</string>
     <string name="cabc_normal">On</string>
     <string name="cabc_balanced">Balanced Mode</string>
@@ -50,13 +51,12 @@
     <string name="otg_mode_summary">Enable USB-OTG power supply for external headphones and flash drives</string>
     <string name="otg_mode_title">Enable USB-OTG</string>
     <string name="tile_otg_mode">Enable USB-OTG</string>
-    <!-- game mode -->
-    <string name="game_mode_summary">Boost Touch Sampling Rate, enables performance mode.\nUsing game mode will impact battery life significantly</string>
-    <string name="game_mode_title">Game Mode</string>
-    <string name="tile_game_mode">Game Mode</string>
-    <string name="dnd_title">Do Not Disturb</string>
-    <string name="dnd_summary">DND will be activated if Game Mode is enabled</string>
-    <string name="game_mode_notif_content">Game Mode is activated</string>
+    <!-- perf profiles -->
+    <string name="perf_title">Device Performance</string>
+    <string name="perf_profile_title">Performance Profile</string>
+    <string name="mode_balance">Balanced</string>
+    <string name="mode_battery">Power save</string>
+    <string name="mode_perf">Performance</string>
     <!-- Refresh rate -->
     <string name="refresh_title">Screen Refresh Rate</string>
     <string name="tile_refresh_rate">Refresh Rate</string>
