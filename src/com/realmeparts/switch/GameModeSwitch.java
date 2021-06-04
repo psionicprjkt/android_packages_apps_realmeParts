@@ -99,7 +99,7 @@ public class GameModeSwitch implements OnPreferenceChangeListener {
         Utils.writeValue(getFile(), enabled ? "1" : "0");
         Utils.writeValue(DeviceSettings.TP_LIMIT_ENABLE, enabled ? "0" : "1");
         Utils.writeValue(DeviceSettings.TP_DIRECTION, enabled ? "1" : "0");
-        SystemProperties.set("perf_profile", enabled ? "1" : "0");
+        SystemProperties.set("persist.perf_profile", enabled ? "1" : "0");
         GameModeDND();
         return true;
     }
