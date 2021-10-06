@@ -16,6 +16,9 @@
     <string name="display_title">Display</string>
     <string name="misc_title">Misc settings</string>
 
+    <!-- Ambient settings -->
+    <string name="ambient_enable">Use ambient display</string>
+
     <!-- CABC -->
     <string name="cabc_title">CABC Mode</string>
     <string name="cabc_dialogTitle">CABC Profiles</string>

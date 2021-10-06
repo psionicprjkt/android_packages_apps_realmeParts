@@ -25,7 +25,6 @@ import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
-import android.view.MenuItem;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
@@ -80,7 +79,6 @@ public class DeviceSettings extends PreferenceFragment
         prefs.edit().putString("ProductName", ProductName).apply();
 
         addPreferencesFromResource(R.xml.main);
-        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 
         mOTGModeSwitch = (TwoStatePreference) findPreference(KEY_OTG_SWITCH);
         mOTGModeSwitch.setEnabled(OTGModeSwitch.isSupported());
@@ -191,17 +189,6 @@ public class DeviceSettings extends PreferenceFragment
             Utils.setStringProp(PERF_PROFILE_SYSTEM_PROPERTY, (String) newValue);
         }
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                getActivity().finish();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     // Remove Charging Speed preference if cool_down node is unavailable
