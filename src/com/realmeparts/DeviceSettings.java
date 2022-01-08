@@ -56,12 +56,8 @@ public class DeviceSettings extends PreferenceFragment
     private static final String ProductName = Utils.ProductName();
     private static final String KEY_CATEGORY_CHARGING = "charging";
     private static final String KEY_CATEGORY_GRAPHICS = "graphics";
-    private static final String KEY_CATEGORY_REFRESH_RATE = "refresh_rate";
     public static SecureSettingListPreference mChargingSpeed;
     public static TwoStatePreference mResetStats;
-    public static TwoStatePreference mRefreshRate90Forced;
-    public static RadioButtonPreference mRefreshRate90;
-    public static RadioButtonPreference mRefreshRate60;
     public static SeekBarPreference mSeekBarPreference;
     public static DisplayManager mDisplayManager;
     private static NotificationManager mNotificationManager;
@@ -102,18 +98,6 @@ public class DeviceSettings extends PreferenceFragment
         mSeekBarPreference.setEnabled(mSmartChargingSwitch.isChecked());
         SeekBarPreference.mProgress = prefs.getInt("seek_bar", 95);
 
-        mRefreshRate90Forced = findPreference("refresh_rate_90Forced");
-        mRefreshRate90Forced.setChecked(prefs.getBoolean("refresh_rate_90Forced", false));
-        mRefreshRate90Forced.setOnPreferenceChangeListener(new RefreshRateSwitch(getContext()));
-
-        mRefreshRate90 = findPreference("refresh_rate_90");
-        mRefreshRate90.setChecked(RefreshRateSwitch.isCurrentlyEnabled(this.getContext()));
-        mRefreshRate90.setOnPreferenceChangeListener(new RefreshRateSwitch(getContext()));
-
-        mRefreshRate60 = findPreference("refresh_rate_60");
-        mRefreshRate60.setChecked(!RefreshRateSwitch.isCurrentlyEnabled(this.getContext()));
-        mRefreshRate60.setOnPreferenceChangeListener(new RefreshRateSwitch(getContext()));
-
         mFpsInfo = findPreference(KEY_FPS_INFO);
         mFpsInfo.setChecked(prefs.getBoolean(KEY_FPS_INFO, false));
         mFpsInfo.setOnPreferenceChangeListener(this);
@@ -128,37 +112,12 @@ public class DeviceSettings extends PreferenceFragment
         mPerfProfile.setSummary(mPerfProfile.getEntry());
         mPerfProfile.setOnPreferenceChangeListener(this);
 
-        // Few checks to enable/disable options when activity is launched
-        if ((prefs.getBoolean("refresh_rate_90", false) && prefs.getBoolean("refresh_rate_90Forced", false))) {
-            mRefreshRate60.setEnabled(false);
-            mRefreshRate90.setEnabled(false);
-        } else if ((prefs.getBoolean("refresh_rate_60", false))) {
-            mRefreshRate90Forced.setEnabled(false);
-        }
-
         isCoolDownAvailable();
-        DisplayRefreshRateModes();
         try {
             ParseJson();
         } catch (Exception e) {
             Log.d("DeviceSettings", e.toString());
         }
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference == mRefreshRate90) {
-            mRefreshRate60.setChecked(false);
-            mRefreshRate90.setChecked(true);
-            mRefreshRate90Forced.setEnabled(true);
-            return true;
-        } else if (preference == mRefreshRate60) {
-            mRefreshRate60.setChecked(true);
-            mRefreshRate90.setChecked(false);
-            mRefreshRate90Forced.setEnabled(false);
-            return true;
-        }
-        return super.onPreferenceTreeClick(preference);
     }
 
     @Override
@@ -202,25 +161,6 @@ public class DeviceSettings extends PreferenceFragment
         } else {
             getPreferenceScreen().removePreference(mPreferenceCategory);
         }
-    }
-
-    // Remove display refresh rate modes category if display doesn't support 90hz
-    private void DisplayRefreshRateModes() {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this.getContext());
-        String refreshRate = "";
-        mDisplayManager = (DisplayManager) this.getContext().getSystemService(Context.DISPLAY_SERVICE);
-        Display.Mode[] DisplayModes = mDisplayManager.getDisplay(Display.DEFAULT_DISPLAY).getSupportedModes();
-        for (Display.Mode mDisplayMode : DisplayModes) {
-            DecimalFormat df = new DecimalFormat("0.##");
-            refreshRate += df.format(mDisplayMode.getRefreshRate()) + "Hz, ";
-        }
-        Log.d("DeviceSettings", "Device supports " + refreshRate + "refresh rate modes");
-
-        if (!refreshRate.contains("90")) {
-            prefs.edit().putBoolean("refresh_rate_90_device", false).apply();
-            mPreferenceCategory = (PreferenceCategory) findPreference(KEY_CATEGORY_REFRESH_RATE);
-            getPreferenceScreen().removePreference(mPreferenceCategory);
-        } else prefs.edit().putBoolean("refresh_rate_90_device", true).apply();
     }
 
     private void ParseJson() throws JSONException {
