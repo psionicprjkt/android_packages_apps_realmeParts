@@ -1,4 +1,10 @@
 on boot
+    # OTG (On-The-Go)
+    chown system system /sys/class/power_supply/usb/otg_switch
+    
+    # Smart Charging
+    chown system system /sys/class/power_supply/battery/mmi_charging_enable
+
     # CABC
     chown system system /sys/kernel/oppo_display/cabc
     chmod 0644 /sys/kernel/oppo_display/cabc
