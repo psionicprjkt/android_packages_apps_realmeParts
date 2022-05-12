@@ -44,9 +44,6 @@ import java.text.DecimalFormat;
 public class DeviceSettings extends PreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
-    public static final String KEY_SRGB_SWITCH = "srgb";
-    public static final String KEY_HBM_SWITCH = "hbm";
-    public static final String KEY_DC_SWITCH = "dc";
     public static final String KEY_OTG_SWITCH = "otg";
     public static final String KEY_PERF_PROFILE = "perf_profile";
     public static final String PERF_PROFILE_SYSTEM_PROPERTY = "persist.perf_profile";
@@ -70,16 +67,10 @@ public class DeviceSettings extends PreferenceFragment
     public static DisplayManager mDisplayManager;
     private static NotificationManager mNotificationManager;
     public PreferenceCategory mPreferenceCategory;
-    private TwoStatePreference mDCModeSwitch;
-    private TwoStatePreference mSRGBModeSwitch;
-    private TwoStatePreference mHBMModeSwitch;
     private TwoStatePreference mOTGModeSwitch;
     private TwoStatePreference mSmartChargingSwitch;
     private SwitchPreference mFpsInfo;
     private boolean CABC_DeviceMatched;
-    private boolean DC_DeviceMatched;
-    private boolean HBM_DeviceMatched;
-    private boolean sRGB_DeviceMatched;
     private SecureSettingListPreference mCABC;
     private SecureSettingListPreference mPerfProfile;
 
@@ -90,21 +81,6 @@ public class DeviceSettings extends PreferenceFragment
 
         addPreferencesFromResource(R.xml.main);
         getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        mDCModeSwitch = findPreference(KEY_DC_SWITCH);
-        mDCModeSwitch.setEnabled(DCModeSwitch.isSupported());
-        mDCModeSwitch.setChecked(DCModeSwitch.isCurrentlyEnabled(this.getContext()));
-        mDCModeSwitch.setOnPreferenceChangeListener(new DCModeSwitch());
-
-        mSRGBModeSwitch = findPreference(KEY_SRGB_SWITCH);
-        mSRGBModeSwitch.setEnabled(SRGBModeSwitch.isSupported());
-        mSRGBModeSwitch.setChecked(SRGBModeSwitch.isCurrentlyEnabled(this.getContext()));
-        mSRGBModeSwitch.setOnPreferenceChangeListener(new SRGBModeSwitch());
-
-        mHBMModeSwitch = (TwoStatePreference) findPreference(KEY_HBM_SWITCH);
-        mHBMModeSwitch.setEnabled(HBMModeSwitch.isSupported());
-        mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this.getContext()));
-        mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch(getContext()));
 
         mOTGModeSwitch = (TwoStatePreference) findPreference(KEY_OTG_SWITCH);
         mOTGModeSwitch.setEnabled(OTGModeSwitch.isSupported());
@@ -275,55 +251,10 @@ public class DeviceSettings extends PreferenceFragment
             }
         }
 
-        JSONArray DC = jsonOB.getJSONArray(KEY_DC_SWITCH);
-        for (int i = 0; i < DC.length(); i++) {
-            if (ProductName.toUpperCase().contains(DC.getString(i))) {
-                {
-                    DC_DeviceMatched = true;
-                }
-            }
-        }
-
-        JSONArray HBM = jsonOB.getJSONArray(KEY_HBM_SWITCH);
-        for (int i = 0; i < HBM.length(); i++) {
-            if (ProductName.toUpperCase().contains(HBM.getString(i))) {
-                {
-                    HBM_DeviceMatched = true;
-                }
-            }
-        }
-
-        JSONArray sRGB = jsonOB.getJSONArray(KEY_SRGB_SWITCH);
-        for (int i = 0; i < sRGB.length(); i++) {
-            if (ProductName.toUpperCase().contains(sRGB.getString(i))) {
-                {
-                    sRGB_DeviceMatched = true;
-                }
-            }
-        }
-
         // Remove CABC preference if device is unsupported
         if (!CABC_DeviceMatched) {
             mPreferenceCategory.removePreference(findPreference(KEY_CABC));
             prefs.edit().putBoolean("CABC_DeviceMatched", false).apply();
         } else prefs.edit().putBoolean("CABC_DeviceMatched", true).apply();
-
-        // Remove DC-Dimming preference if device is unsupported
-        if (!DC_DeviceMatched) {
-            mPreferenceCategory.removePreference(findPreference(KEY_DC_SWITCH));
-            prefs.edit().putBoolean("DC_DeviceMatched", false).apply();
-        } else prefs.edit().putBoolean("DC_DeviceMatched", true).apply();
-
-        // Remove HBM preference if device is unsupported
-        if (!HBM_DeviceMatched) {
-            mPreferenceCategory.removePreference(findPreference(KEY_HBM_SWITCH));
-            prefs.edit().putBoolean("HBM_DeviceMatched", false).apply();
-        } else prefs.edit().putBoolean("HBM_DeviceMatched", true).apply();
-
-        // Remove sRGB preference if device is unsupported
-        if (!sRGB_DeviceMatched) {
-            mPreferenceCategory.removePreference(findPreference(KEY_SRGB_SWITCH));
-            prefs.edit().putBoolean("sRGB_DeviceMatched", false).apply();
-        } else prefs.edit().putBoolean("sRGB_DeviceMatched", true).apply();
     }
 }

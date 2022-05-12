@@ -83,24 +83,6 @@
             android:selectable="false"
             android:summary="@string/cabc_summary" />
 
-        <SwitchPreference
-            android:icon="@drawable/dc_mode_icon"
-            android:key="dc"
-            android:summary="@string/dc_mode_summary"
-            android:title="@string/dc_mode_title" />
-
-        <SwitchPreference
-            android:key="hbm"
-            android:icon="@drawable/ic_hbm"
-            android:summary="@string/hbm_mode_summary"
-            android:title="@string/hbm_mode_title" />
-
-        <SwitchPreference
-            android:icon="@drawable/srgb_mode_icon"
-            android:key="srgb"
-            android:summary="@string/srgb_mode_summary"
-            android:title="@string/srgb_mode_title" />
-
         <Preference
             android:key="doze"
             android:title="@string/ambient_display_gestures_title"
