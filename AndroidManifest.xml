@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2014-2015 The CyanogenMod Project
      Copyright (C) 2017 The LineageOS Project
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,27 +13,29 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:sharedUserId="android.uid.system"
     package="com.realmeparts"
+    android:sharedUserId="android.uid.system"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
-    <uses-permission android:name="android.permission.INJECT_EVENTS"
+    <uses-permission
+        android:name="android.permission.INJECT_EVENTS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
     <protected-broadcast android:name="com.android.systemui.doze.pulse" />
 
     <application
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:label="@string/device_title"
-        android:theme="@style/AppTheme"
         android:allowBackup="true"
-        android:fullBackupContent="true">
+        android:fullBackupContent="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/device_title"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:theme="@style/AppTheme">
 
         <!-- Doze -->
         <activity
@@ -44,8 +45,9 @@
             <intent-filter>
                 <action android:name="com.android.settings.action.IA_SETTINGS" />
             </intent-filter>
-            <meta-data android:name="com.android.settings.category"
-                       android:value="com.android.settings.category.ia.display" />
+            <meta-data
+                android:name="com.android.settings.category"
+                android:value="com.android.settings.category.ia.display" />
         </activity>
 
         <!-- Device Settings -->
@@ -54,10 +56,11 @@
             android:label="@string/device_title">
             <intent-filter>
                 <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
-                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES"/>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
                 <action android:name="android.intent.action.MAIN" />
                 <!-- <category android:name="android.intent.category.LAUNCHER" /> # Remove LAUNCHER -->
             </intent-filter>
+
             <meta-data
                 android:name="com.android.settings.icon"
                 android:resource="@drawable/ic_homepage_settings" />
@@ -71,62 +74,71 @@
 
         <activity android:name=".DeviceSettings" />
 
-        <receiver android:name="com.realmeparts.Startup" >
-            <intent-filter android:priority="1000" >
+        <receiver android:name="com.realmeparts.Startup">
+            <intent-filter android:priority="1000">
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
         <!-- Quick Settings Tiles -->
+
+        <!-- Performance Profile -->
         <service
             android:name="com.realmeparts.PerfProfileTileService"
             android:icon="@drawable/ic_perf_profile"
             android:label="@string/perf_profile_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+
+        <!-- Refresh Rate -->
         <service
             android:name="com.realmeparts.RefreshRateTileService"
             android:icon="@drawable/ic_refresh_tile_60"
             android:label="@string/tile_refresh_rate"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
 
-        <service android:name="com.realmeparts.FPSInfoService"
-                android:exported="false">
-        </service>
+        <!-- FPS Info -->
+        <service
+            android:name="com.realmeparts.FPSInfoService"
+            android:exported="false"></service>
+
+        <!-- OTG -->
         <service
             android:name="com.realmeparts.OtgToggleService"
             android:icon="@drawable/ic_otg_tile"
             android:label="@string/tile_otg_mode"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+
+        <!-- CABC -->
         <service
             android:name="com.realmeparts.CABCTileService"
             android:icon="@drawable/ic_cabc"
             android:label="@string/cabc_title"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
-                <action
-                    android:name="android.service.quicksettings.action.QS_TILE"/>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
-        <service android:name="com.realmeparts.SmartChargingService"
-                android:exported="false">
-        </service>
-        <service android:name="com.realmeparts.doze.DozeService"
-                android:exported="false">
-        </service>
+
+        <!-- Smart Charging -->
+        <service
+            android:name="com.realmeparts.SmartChargingService"
+            android:exported="false"></service>
+
+        <!-- Doze -->
+        <service
+            android:name="com.realmeparts.doze.DozeService"
+            android:exported="false"></service>
     </application>
 </manifest>
