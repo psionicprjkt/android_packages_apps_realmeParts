@@ -226,7 +226,7 @@ public class FPSInfoService extends Service {
         }
 
         private String getFPSInfoString() {
-            return mFps;
+            return "FPS: "+mFps;
         }
 
         @Override
