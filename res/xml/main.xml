@@ -60,6 +60,9 @@
             android:entryValues="@array/perf_profile_values"
             android:defaultValue="0"
             android:title="@string/perf_profile_title" />
+
+        <Preference
+            android:summary="@string/performance_profile_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -74,6 +77,9 @@
             android:entryValues="@array/cabc_values"
             android:defaultValue="0"
             android:title="@string/cabc_title" />
+
+        <Preference
+            android:summary="@string/cabc_summary" />
 
         <SwitchPreference
             android:icon="@drawable/dc_mode_icon"

@@ -19,7 +19,7 @@
     <!-- CABC -->
     <string name="cabc_title">CABC Mode</string>
     <string name="cabc_dialogTitle">CABC Profiles</string>
-    <string name="cabc_summary">This feature will lower some display effects to increase your phone\'s endurance</string>
+    <string name="cabc_summary">ⓘ <b>Content Adaptive Backlight Control</b>: This feature will lower some display effects to increase your phone\'s endurance</string>
     <string name="cabc_off">Off</string>
     <string name="cabc_normal">On</string>
     <string name="cabc_balanced">Balanced Mode</string>
@@ -54,6 +54,7 @@
     <!-- perf profiles -->
     <string name="perf_title">Device Performance</string>
     <string name="perf_profile_title">Performance Profile</string>
+    <string name="performance_profile_summary">ⓘ <b>Balanced</b>: Profile based on default configs\nⓘ <b>Power Save</b>: Profile based on power-saving configs\nⓘ <b>Performance</b>: Profile based on high performance configs</string>
     <string name="mode_balance">Balanced</string>
     <string name="mode_battery">Power save</string>
     <string name="mode_perf">Performance</string>
