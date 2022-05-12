@@ -66,6 +66,10 @@
     <!-- fps info -->
     <string name="fps_info_title">FPS overlay</string>
     <string name="fps_info_summary">Show overlay with current frames per second</string>
+    <!-- other info -->
+    <string name="other_title">Other</string>
+    <string name="other_info_title">Information</string>
+    <string name="other_info_summary">© 2022 - officialputuid #psionicprjkt\nofficialputuid.github.io - psionicprjkt.my.id</string>
 
     <!-- Unsupported -->
     <string name="unsupported">Unsupported</string>
