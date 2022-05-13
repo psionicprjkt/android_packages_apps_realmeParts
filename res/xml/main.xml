@@ -10,7 +10,9 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory
         android:key="charging"
         android:title="@string/smart_charging_main_title">
@@ -62,6 +64,7 @@
             android:title="@string/perf_profile_title" />
 
         <Preference
+            app:iconSpaceReserved="false"
             android:selectable="false"
             android:summary="@string/performance_profile_summary" />
     </PreferenceCategory>
@@ -80,6 +83,7 @@
             android:title="@string/cabc_title" />
 
         <Preference
+            app:iconSpaceReserved="false"
             android:selectable="false"
             android:summary="@string/cabc_summary" />
 
