@@ -5,31 +5,31 @@ on boot
     # Smart Charging
     chown system system /sys/class/power_supply/battery/mmi_charging_enable
 
-    # CABC
-    chown system system /sys/kernel/oppo_display/cabc
+    # LCM_CABC
+    chown system system /sys/kernel/oppo_display/LCM_CABC
 
-    # CABC off
+    # LCM_CABC off
     on property:persist.cabc_profile=0
-    write /sys/kernel/oppo_display/cabc 0
+    write /sys/kernel/oppo_display/LCM_CABC 0
 
-    # CABC on
+    # LCM_CABC on
     on property:persist.cabc_profile=1
-    write /sys/kernel/oppo_display/cabc 1
+    write /sys/kernel/oppo_display/LCM_CABC 1
 
-    # CABC balanced
+    # LCM_CABC balanced
     on property:persist.cabc_profile=2
-    write /sys/kernel/oppo_display/cabc 2
+    write /sys/kernel/oppo_display/LCM_CABC 2
 
-    # CABC aggressive
+    # LCM_CABC aggressive
     on property:persist.cabc_profile=3
-    write /sys/kernel/oppo_display/cabc 3
+    write /sys/kernel/oppo_display/LCM_CABC 3
 
     # Performance profiles
     on property:persist.perf_profile=0
-    write /sys/kernel/oppo_display/cabc 0
+    write /sys/kernel/oppo_display/LCM_CABC 0
 
     on property:persist.perf_profile=1
-    write /sys/kernel/oppo_display/cabc 3
+    write /sys/kernel/oppo_display/LCM_CABC 3
 
     on property:persist.perf_profile=2
-    write /sys/kernel/oppo_display/cabc 0
+    write /sys/kernel/oppo_display/LCM_CABC 0
